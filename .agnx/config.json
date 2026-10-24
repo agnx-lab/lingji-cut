@@ -1,0 +1,10 @@
+{
+  "appId": "lingji-cut",
+  "installState": "installed",
+  "launchMode": "packaged",
+  "source": {
+    "kind": "github",
+    "url": "https://github.com/yoqu/lingji-cut"
+  },
+  "updatedAt": "2026-10-22T23:09:00.000Z"
+}

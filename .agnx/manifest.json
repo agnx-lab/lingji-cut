@@ -1,0 +1,62 @@
+{
+  "id": "lingji-cut",
+  "name": "灵机剪影",
+  "version": "1.3.1",
+  "description": "Agnx 外置子应用：yoqu/lingji-cut（灵机剪影，AI 影视解说剪辑，Electron 41 + electron-vite + React 19 + Remotion 4）。桌面 Tab 已跑通、上游 UI 完整渲染；但上游主进程不运行，preload 的 IPC 无应答，功能层不可用（见 EMBED.md 缺口表）。",
+  "engines": {
+    "agnx": ">=1.0.0"
+  },
+  "main": "./dist/index.js",
+  "icon": "./.agnx/assets/lingji-cut-icon.svg",
+  "platforms": {
+    "desktop": "supported",
+    "web": "unsupported",
+    "mobile": "unsupported"
+  },
+  "sidecar": {
+    "supervised": false,
+    "ensureTool": ".agnx/tools/ensure-lingji-cut.mjs",
+    "stateFile": "lingji-cut.json",
+    "defaultPort": 8133,
+    "lifecycle": "lazy"
+  },
+  "runtime": {
+    "sidecars": [
+      {
+        "id": "desktop-renderer",
+        "ensureTool": ".agnx/tools/ensure-lingji-cut.mjs",
+        "stateFile": "lingji-cut.json",
+        "kind": "node-host",
+        "healthKind": "http"
+      }
+    ]
+  },
+  "guest": {
+    "kind": "electron-module",
+    "module": "lingji-cut-desktop",
+    "capabilities": [
+      "fs",
+      "dialog",
+      "shell",
+      "spawn",
+      "stream",
+      "pty"
+    ],
+    "preferStrategy": "electron-module"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "id": "lingji-cut.open",
+        "title": "灵机剪影"
+      }
+    ],
+    "panels": [
+      {
+        "id": "lingji-cut.main",
+        "title": "灵机剪影"
+      }
+    ]
+  },
+  "iconDark": "./.agnx/assets/lingji-cut-icon-dark.svg"
+}
